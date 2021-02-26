@@ -1,6 +1,7 @@
-package com.company;
+package com.company.demo;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.Random;
 
@@ -67,6 +68,7 @@ public class Main {
         }
         for (int i = 0; i < n; i++) {
             insertionSort(buckets[i]);
+            //Collections.sort(buckets[i])
         }
 
     }
