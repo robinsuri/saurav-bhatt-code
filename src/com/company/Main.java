@@ -1,5 +1,9 @@
 package com.company;
 
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Random;
+
 /*
 13, 19, 9, 5, 12, 8, 7, 4, 21, 2, 6, 11
 quicksort(A,1,12);
@@ -20,17 +24,74 @@ index of pariitioning pivot = 7
 public class Main {
 
     public static void main(String[] args) {
-        double[] doubleArray = {1,1,2,2,3,3};
-        quickSort(doubleArray, 0, doubleArray.length - 1);
-        for (int i = 0; i < doubleArray.length; i++)
-            System.out.print(doubleArray[i] + ", ");
-        
+        int n = 10;
+        int r = 2;
+        double[] doubleArray = generateRandom(n, r);
+        for(int i = 0;i<10;i++)
+            System.out.print(doubleArray[i]+" ,");
+        System.out.println();
+//        quickSort(doubleArray, 0, doubleArray.length - 1);
+
+        bucketSort(doubleArray);
+//        Math.random();
     }
 
 
-    private static void bucketSort(double[] A){
+    private static double[] generateRandom(int n, int r) {
+        double[] doubles = new double[n];
+        int i = 0;
+        while (i < n) {
+            double randomNumber = Math.random();
+            int repetitions = generateRandomIntegerWithinBounds(1, 2 * r);
+            for (int j = i; j < i + repetitions && j<n; j++)
+                doubles[j] = randomNumber;
+            i = i + r;
+        }
+        return doubles;
+    }
+
+    private static int generateRandomIntegerWithinBounds(int min, int max) {
+        Random random = new Random();
+        return random.nextInt(max - min) + min;
+    }
+
+    private static void bucketSort(double[] A) {
+        int n = A.length;
+        List<Double>[] buckets = new ArrayList[n];
+
+        for(int i =0;i<n;i++)
+            buckets[i] = new ArrayList<>();
+        for (int i = 0; i < n; i++) {
+            int listIndex = (int) (n * A[i]);
+            buckets[listIndex].add(A[i]);
+        }
+        for (int i = 0; i < n; i++) {
+            insertionSort(buckets[i]);
+        }
 
     }
+
+    private static void insertionSort(List<Double> bucket) {
+        int n = bucket.size();
+        Object[] bucketArray =  bucket.toArray();
+        for (int i = 1; i < n; ++i) {
+            Double key = (Double) bucketArray[i];
+            int j = i - 1;
+
+            /* Move elements of arr[0..i-1], that are
+               greater than key, to one position ahead
+               of their current position */
+            while (j >= 0 && (Double)bucketArray[j] > key) {
+                bucketArray[j + 1] = bucketArray[j];
+                j = j - 1;
+            }
+            bucketArray[j + 1] = key;
+        }
+        for (int i = 0; i < n; i++) {
+            System.out.print(bucketArray[i] + ", ");
+        }
+    }
+
     // {13, 19}--> [19]/
     private static void quickSort(double[] A, int p, int r) {
         if (p < r) {
