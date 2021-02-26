@@ -28,13 +28,13 @@ public class Main {
         int n = 10;
         int r = 2;
         double[] doubleArray = generateRandom(n, r);
-        for(int i = 0;i<10;i++)
-            System.out.print(doubleArray[i]+" ,");
+
         System.out.println();
 //        quickSort(doubleArray, 0, doubleArray.length - 1);
 
         bucketSort(doubleArray);
-//        Math.random();
+        for(int i = 0;i<10;i++)
+            System.out.print(doubleArray[i]+" ,");
     }
 
 
@@ -70,6 +70,12 @@ public class Main {
             insertionSort(buckets[i]);
             //Collections.sort(buckets[i])
         }
+        int index = 0;
+        for (int i = 0; i < n; i++) {
+            for (int j = 0; j < buckets[i].size(); j++) {
+                A[index++] = buckets[i].get(j);
+            }
+        }
 
     }
 
@@ -77,20 +83,13 @@ public class Main {
         int n = bucket.size();
         Object[] bucketArray =  bucket.toArray();
         for (int i = 1; i < n; ++i) {
-            Double key = (Double) bucketArray[i];
+            Double key = (Double) bucket.get(i);
             int j = i - 1;
-
-            /* Move elements of arr[0..i-1], that are
-               greater than key, to one position ahead
-               of their current position */
-            while (j >= 0 && (Double)bucketArray[j] > key) {
-                bucketArray[j + 1] = bucketArray[j];
+            while (j >= 0 && (Double)bucket.get(j) > key) {
+                bucket.set(j + 1,bucket.get(j));
                 j = j - 1;
             }
             bucketArray[j + 1] = key;
-        }
-        for (int i = 0; i < n; i++) {
-            System.out.print(bucketArray[i] + ", ");
         }
     }
 
