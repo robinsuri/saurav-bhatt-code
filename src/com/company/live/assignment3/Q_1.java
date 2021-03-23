@@ -9,8 +9,8 @@ public class Q_1 {
         String[] words;
         words = buildWords();
 //        System.out.println(badness(Words, 0, 3, 15));
-        int width = 18;
-        words = new String[]{"This", "is", "sample", "text"};
+        int width = 91;
+//        words = new String[]{"This", "is", "sample", "text"};
 //        words = new String[]{"abcdefghijklm"};
         List<Integer> lineSplits = split(width, words);
 //        int optimalNumOfWordsInFirstLine[] = new int[words.length];
@@ -78,7 +78,7 @@ public class Q_1 {
 
     private static String[] buildWords() {
         String listOfWords = "And , we , are , increasingly , relying , on , videoconferencing , apps , like , Zoom , and ,\n" +
-                "FaceTime , to , correspond , with , our , peers. , But , inevitably, with , our , homes , and ,\n" +
+                "FaceTime , to , correspond , with , our , peers , But , inevitably, with , our , homes , and ,\n" +
                 "workplaces , merging , into , one, the , boundaries , between , our , personal , and , professional\n" +
                 ", lives , are , beginning , to , erode , and , awkward , situations , have , ensued";
         String[] strings = listOfWords.split(",");
