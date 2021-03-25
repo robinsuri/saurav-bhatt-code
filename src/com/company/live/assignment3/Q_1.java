@@ -7,29 +7,63 @@ public class Q_1 {
 
     public static void main(String[] args) {
         String[] words;
-        words = buildWords();
+        words = buildWords();// width = 91
 //        System.out.println(badness(Words, 0, 3, 15));
         int width = 91;
-//        words = new String[]{"This", "is", "sample", "text"};
+//        width = 18;words = new String[]{"This", "is", "sample", "text"};
 //        words = new String[]{"abcdefghijklm"};
         List<Integer> lineSplits = split(width, words);
 //        int optimalNumOfWordsInFirstLine[] = new int[words.length];
 //        System.out.println(minimumBadness(width, words, optimalNumOfWordsInFirstLine));
+//        printSplitWithSingleSpace(words, lineSplits);
+        justify(width, words, lineSplits);
+
+    }
+
+    private static void printSplitWithSingleSpace(String[] words, List<Integer> lineSplits) {
         int previousLineIndex = 0;
         for (int i = 1; i < lineSplits.size(); i++) {
             int currentLineIndex = lineSplits.get(i);
             for (int j = previousLineIndex; j < currentLineIndex; j++)
-                System.out.print(words[j]+" ");
+                System.out.print(words[j] + " ");
             System.out.println();
             previousLineIndex = currentLineIndex;
         }
-        for(int i = previousLineIndex;i<words.length;i++)
-            System.out.print(words[i]+" ");
-
+        for (int i = previousLineIndex; i < words.length; i++)
+            System.out.print(words[i] + " ");
     }
 
-    private void testCases() {
+    private static void justify(int width, String[] words, List<Integer> splits) {
+        for (int i = 0; i < splits.size(); i++) {
+            int indexOfWordOnNextLine;
+            if (i == splits.size() - 1) {
+                indexOfWordOnNextLine = words.length;
+            } else {
+                indexOfWordOnNextLine = splits.get(i + 1);
+            }
+            int numOfWords = indexOfWordOnNextLine - splits.get(i);
+            int wordsLength = rawLength(words, splits.get(i), indexOfWordOnNextLine);
+            int extraSpaceLeft = width - wordsLength;
+            int spaceBetweenEachWord = extraSpaceLeft / (numOfWords-1);
+            for (int j = splits.get(i); j < indexOfWordOnNextLine; j++) {
+                System.out.print(words[j]);
+                if (j != indexOfWordOnNextLine - 1)
+                    printSpace(spaceBetweenEachWord);
+            }
+            System.out.println();
+        }
+    }
 
+    private static int rawLength(String[] words, int i, int j) {
+        int length = 0;
+        for (int k = i; k < j; k++)
+            length += words[k].length();
+        return length;
+    }
+
+    private static void printSpace(int spaceBetweenEachWord) {
+        for (int i = 0; i < spaceBetweenEachWord; i++)
+            System.out.print(" ");
     }
 
     private static List<Integer> split(int width, String[] words) {
