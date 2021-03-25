@@ -1,4 +1,4 @@
-package com.company.live;
+package com.company.live.assignment2;
 
 import java.util.ArrayList;
 import java.util.List;
