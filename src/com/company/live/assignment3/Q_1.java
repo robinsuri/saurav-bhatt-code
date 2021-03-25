@@ -5,22 +5,54 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
+import java.util.Scanner;
 
 public class Q_1 {
 
     public static void main(String[] args) throws IOException {
-        String[] words;
-        words = buildWords();// width = 91
-//        System.out.println(badness(Words, 0, 3, 15));
-        //int width = 91;
-       int width = 18;words = new String[]{"This", "is", "sample", "text"};
-//        words = new String[]{"abcdefghijklm"};
-        List<Integer> lineSplits = split(width, words);
-//        int optimalNumOfWordsInFirstLine[] = new int[words.length];
-//        System.out.println(minimumBadness(width, words, optimalNumOfWordsInFirstLine));
-//        printSplitWithSingleSpace(words, lineSplits);
+        System.out.print("Enter number of words and page width : ");
+        Scanner scanner = new Scanner(System.in);
+        int numOfWords = scanner.nextInt();
+        int width = scanner.nextInt();
+        String[] words = new String[numOfWords];
+        for (int i = 0; i < numOfWords; i++) {
+            words[i] = generateRandomString(1, 15);
+        }
+                List<Integer> lineSplits = split(width, words);
         justify(width, words, lineSplits);
 
+        FileWriter fileWriter = new FileWriter("unjust.txt");
+        PrintWriter printWriter = new PrintWriter(fileWriter);
+        for(int i =0;i<words.length;i++){
+            printWriter.print(words[i]);
+            if(i!=words.length-1)
+                printWriter.print(" ");
+        }
+        printWriter.close();
+//        String[] words;
+//        words = buildWords();// width = 91
+////        System.out.println(badness(Words, 0, 3, 15));
+//        //int width = 91;
+//       int width = 18;words = new String[]{"This", "is", "sample", "text"};
+////        words = new String[]{"abcdefghijklm"};
+//        List<Integer> lineSplits = split(width, words);
+////        int optimalNumOfWordsInFirstLine[] = new int[words.length];
+////        System.out.println(minimumBadness(width, words, optimalNumOfWordsInFirstLine));
+////        printSplitWithSingleSpace(words, lineSplits);
+//        justify(width, words, lineSplits);
+
+
+    }
+
+    private static String generateRandomString(int minLength, int maxLength) {
+        Random random = new Random();
+        int lengthOfString = random.nextInt(maxLength - minLength + 1) + minLength;
+        String randomString = "";
+        // will generate a random number between minLength and maxLength inclusive
+        for (int i = 0; i < lengthOfString; i++)
+            randomString += "a";
+        return randomString;
     }
 
     private static void printSplitWithSingleSpace(String[] words, List<Integer> lineSplits) {
