@@ -1,16 +1,19 @@
 package com.company.live.assignment3;
 
+import java.io.FileWriter;
+import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.List;
 
 public class Q_1 {
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws IOException {
         String[] words;
         words = buildWords();// width = 91
 //        System.out.println(badness(Words, 0, 3, 15));
-        int width = 91;
-//        width = 18;words = new String[]{"This", "is", "sample", "text"};
+        //int width = 91;
+       int width = 18;words = new String[]{"This", "is", "sample", "text"};
 //        words = new String[]{"abcdefghijklm"};
         List<Integer> lineSplits = split(width, words);
 //        int optimalNumOfWordsInFirstLine[] = new int[words.length];
@@ -33,7 +36,9 @@ public class Q_1 {
             System.out.print(words[i] + " ");
     }
 
-    private static void justify(int width, String[] words, List<Integer> splits) {
+    private static void justify(int width, String[] words, List<Integer> splits) throws IOException {
+        FileWriter fileWriter = new FileWriter("just.txt");
+        PrintWriter printWriter = new PrintWriter(fileWriter);
         for (int i = 0; i < splits.size(); i++) {
             int indexOfWordOnNextLine;
             if (i == splits.size() - 1) {
@@ -44,14 +49,15 @@ public class Q_1 {
             int numOfWords = indexOfWordOnNextLine - splits.get(i);
             int wordsLength = rawLength(words, splits.get(i), indexOfWordOnNextLine);
             int extraSpaceLeft = width - wordsLength;
-            int spaceBetweenEachWord = extraSpaceLeft / (numOfWords-1);
+            int spaceBetweenEachWord = extraSpaceLeft / (numOfWords - 1);
             for (int j = splits.get(i); j < indexOfWordOnNextLine; j++) {
-                System.out.print(words[j]);
+                printWriter.print(words[j]);
                 if (j != indexOfWordOnNextLine - 1)
-                    printSpace(spaceBetweenEachWord);
+                    printSpaceToFile(spaceBetweenEachWord, printWriter);
             }
-            System.out.println();
+            printWriter.println();
         }
+        printWriter.close();
     }
 
     private static int rawLength(String[] words, int i, int j) {
@@ -59,6 +65,11 @@ public class Q_1 {
         for (int k = i; k < j; k++)
             length += words[k].length();
         return length;
+    }
+
+    private static void printSpaceToFile(int spaceBetweenEachWord, PrintWriter printWriter) {
+        for (int i = 0; i < spaceBetweenEachWord; i++)
+            printWriter.print(" ");
     }
 
     private static void printSpace(int spaceBetweenEachWord) {
