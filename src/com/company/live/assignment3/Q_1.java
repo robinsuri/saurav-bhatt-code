@@ -19,6 +19,7 @@ public class Q_1 {
         for (int i = 0; i < numOfWords; i++) {
             words[i] = generateRandomString(1, 15);
         }
+
                 List<Integer> lineSplits = split(width, words);
         justify(width, words, lineSplits);
 
@@ -112,7 +113,8 @@ public class Q_1 {
     private static List<Integer> split(int width, String[] words) {
         List<Integer> indexList = new ArrayList<>();
         int optimalNumOfWordsInFirstLine[] = new int[words.length];
-        minimumBadness(width, words, optimalNumOfWordsInFirstLine);
+        int x = minimumBadness(width, words, optimalNumOfWordsInFirstLine);
+        System.out.println(x);
         int wordsSplitTillNow = 0;
         int index = 0;
         while (wordsSplitTillNow < words.length) {
@@ -153,6 +155,11 @@ public class Q_1 {
         return DP[0];
     }
 
+        private static String[] buildWords2(){
+        String listOfWords = "aaaaaaaaaaaaaa aaaaaaa aaaaaaaaa aaa aaaaaaaaaaaa aaaaa aaa aaaaaaa aaaaaaaaaa aaaaaaaaaaa aaaaaaaaaaaaaa aaaaaaaaaa aaaaaaaaaa aaaaaaaaa aaaaaaaa aaaaaa aaaa aaaaaaaaaaaaa aaaaaaaaa aaaaa aaaaaaa aaaaaaaaaaaa aaaa aaaaaaaa aaaaaaaaa aa aaaaaaaaaaaaaaa aaa aaaaaaaaaaaaaaa aaaaaaaaaaaaaa aaaaaaaaaaaaaa aaaaaaaaa aaaaa aaaaaaaa aaaa aaaaa aaaaa aaaaaaaaaaaaaa aaaaaa aaaaaaaaaaaaaa aaaaaaaaaa a a aaaaaaaaaa aaaaaaaaaaaaaaa aaaaaaaaaaaaa aaaaaaaaaaaaaaa aaaaaaaaa aaaaaaaaaaaaa aaa aaaaaaaaaaaaaaa aaaaaaaaaaaa aaaaaaa aaaaaaa aaaaaa aaaaaaaaaaaaaa aaaaaaaaaaaaa aaaaa aaaaaa aaaaaaaaaaaaa aaaaaaaaa aaaaa a aaaaaaaaaaa aaaaaaaaaaaa aaaa aaaaaaaaa aaaaaaaaaaa aa aaaaaaa aaaaaaaa aaaaaaaaaaa aaaaaa aaa aaaaaaaaaaa aaaaaaaa aaaaaaaaaaaaaa aaaaaaaaaaaaaaa aaa a aaaa aaaaaaaaaa aaaaaa aaaaaaaaaaaa a aaa aaaaaa aaaa aaaaaaaaaa aaaaaaaaaa aaaaaaaaaa aaaaaaa aaaaaaaaaaaa aaaaaaaaaa aa aaaaaaaaaaaaaaa aaaaaaaaa aaaaaaaaaaaaaaa aaaaaa aaaaaaaa";
+        String[] listofWordsSplit = listOfWords.split("\\s");
+        return listofWordsSplit;
+    }
     private static String[] buildWords() {
         String listOfWords = "And , we , are , increasingly , relying , on , videoconferencing , apps , like , Zoom , and ,\n" +
                 "FaceTime , to , correspond , with , our , peers , But , inevitably, with , our , homes , and ,\n" +
