@@ -42,6 +42,7 @@ public class Graph {
         }
         time++;
         vertexData.get(vertex).setFinishTime(time);
+        System.out.println(System.currentTimeMillis());
     }
 
     void DFS(int v) {
