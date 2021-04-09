@@ -1,7 +1,6 @@
 package com.company.demo;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 import java.util.Random;
 
@@ -33,8 +32,8 @@ public class Main {
 //        quickSort(doubleArray, 0, doubleArray.length - 1);
 
         bucketSort(doubleArray);
-        for(int i = 0;i<10;i++)
-            System.out.print(doubleArray[i]+" ,");
+        for (int i = 0; i < 10; i++)
+            System.out.print(doubleArray[i] + " ,");
     }
 
 
@@ -44,7 +43,7 @@ public class Main {
         while (i < n) {
             double randomNumber = Math.random();
             int repetitions = generateRandomIntegerWithinBounds(1, 2 * r);
-            for (int j = i; j < i + repetitions && j<n; j++)
+            for (int j = i; j < i + repetitions && j < n; j++)
                 doubles[j] = randomNumber;
             i = i + r;
         }
@@ -60,7 +59,7 @@ public class Main {
         int n = A.length;
         List<Double>[] buckets = new ArrayList[n];
 
-        for(int i =0;i<n;i++)
+        for (int i = 0; i < n; i++)
             buckets[i] = new ArrayList<>();
         for (int i = 0; i < n; i++) {
             int listIndex = (int) (n * A[i]);
@@ -81,12 +80,12 @@ public class Main {
 
     private static void insertionSort(List<Double> bucket) {
         int n = bucket.size();
-        Object[] bucketArray =  bucket.toArray();
+        Object[] bucketArray = bucket.toArray();
         for (int i = 1; i < n; ++i) {
             Double key = (Double) bucket.get(i);
             int j = i - 1;
-            while (j >= 0 && (Double)bucket.get(j) > key) {
-                bucket.set(j + 1,bucket.get(j));
+            while (j >= 0 && (Double) bucket.get(j) > key) {
+                bucket.set(j + 1, bucket.get(j));
                 j = j - 1;
             }
             bucketArray[j + 1] = key;
