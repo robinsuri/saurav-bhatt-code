@@ -6,6 +6,8 @@ public class Graph {
     private int time = 0;
     private int numOfVertices;
     private List<VertexData> vertexData;
+    private boolean visited[];
+
     // adjacency list is mainted as an array of linked list
     // vertices 0 to n-1  if there n vertices
     // we make an array of n linkedlist
@@ -20,6 +22,7 @@ public class Graph {
             adjacencyList[i] = new LinkedList();
             vertexData.add(new VertexData());
         }
+        visited = new boolean[numOfVertices];
     }
 
     void addEdge(int vertex1, int vertex2) {
@@ -42,8 +45,12 @@ public class Graph {
     }
 
     void DFS(int v) {
-        boolean visited[] = new boolean[numOfVertices];
         runDFS(v, visited);
+    }
+
+
+    public boolean[] getVisited() {
+        return visited;
     }
 
     public static void main(String args[]) {
@@ -61,7 +68,8 @@ public class Graph {
         g.addEdge(5, 5);
         g.addEdge(4, 3);
 
-
-        g.DFS(0);
+        for (int i = 0; i < numOfNodes; i++)
+            if (!g.getVisited()[i])
+                g.DFS(i);
     }
 }
