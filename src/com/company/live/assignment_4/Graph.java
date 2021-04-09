@@ -1,35 +1,35 @@
 package com.company.live.assignment_4;
 import java.util.*;
 public class Graph {
-    private int V;
-    private LinkedList<Integer> adj[];
-    Graph(int v)
+    private int numOfVertices;
+    private LinkedList<Integer> adjacencyList[];
+    Graph(int numOfVertices)
     {
-        V = v;
-        adj = new LinkedList[v];
-        for (int i = 0; i < v; ++i)
-            adj[i] = new LinkedList();
+        this.numOfVertices = numOfVertices;
+        adjacencyList = new LinkedList[numOfVertices];
+        for (int i = 0; i < numOfVertices; ++i)
+            adjacencyList[i] = new LinkedList();
     }
-    void addEdge(int v, int w)
+    void addEdge(int vertex1, int vertex2)
     {
-        adj[v].add(w);
+        adjacencyList[vertex1].add(vertex2);
     }
-    void DFSUtil(int v, boolean visited[])
+    void runDFS(int vertex, boolean visited[])
     {
-        visited[v] = true;
-        System.out.print(v + " ");
-        Iterator<Integer> i = adj[v].listIterator();
-        while (i.hasNext())
+        visited[vertex] = true;
+        System.out.print(vertex + " ");
+        Iterator<Integer> iterator = adjacencyList[vertex].listIterator();
+        while (iterator.hasNext())
         {
-            int n = i.next();
+            int n = iterator.next();
             if (!visited[n])
-                DFSUtil(n, visited);
+                runDFS(n, visited);
         }
     }
     void DFS(int v)
     {
-        boolean visited[] = new boolean[V];
-        DFSUtil(v, visited);
+        boolean visited[] = new boolean[numOfVertices];
+        runDFS(v, visited);
     }
 
     public static void main(String args[])
