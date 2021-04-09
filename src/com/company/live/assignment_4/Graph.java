@@ -57,19 +57,23 @@ public class Graph {
         System.out.print("Enter the number of nodes : ");
         Scanner scanner = new Scanner(System.in);
         int numOfNodes = scanner.nextInt();
-        Graph g = new Graph(6);
-
-        g.addEdge(0, 1);
-        g.addEdge(0, 2);
-        g.addEdge(2, 1);
-        g.addEdge(1, 3);
-        g.addEdge(3, 2);
-        g.addEdge(4, 5);
-        g.addEdge(5, 5);
-        g.addEdge(4, 3);
-
+        System.out.print("Enter the number of edges : ");
+        int numOfEdges = scanner.nextInt();
+        Graph g = new Graph(numOfNodes);
+        for (int i = 0; i < numOfEdges; i++) {
+            int vertex1 = g.generateRandom(0, numOfNodes - 1);
+            int vertex2 = g.generateRandom(0, numOfNodes - 1);
+            g.addEdge(vertex1, vertex2);
+        }
         for (int i = 0; i < numOfNodes; i++)
             if (!g.getVisited()[i])
                 g.DFS(i);
+    }
+
+    // This will generate a random number
+    // between min and max inclusive of both
+    private int generateRandom(int min, int max) {
+        Random random = new Random();
+        return random.nextInt(max - min + 1) + min;
     }
 }
