@@ -1,7 +1,21 @@
 package com.company.live.assignment_4;
 
 import java.util.*;
+// Q2
+/*  Time is in nanoseconds
+V       |V|-1             (|V|-1)^3/2              (|V|-1)^2
+10      481900  (E=9)      357600    (E=27)         213500    (E=81)
+100     523800  (E=99)     1050300   (E=985)        3745600   (E=9801)
+1000    2539700 (E=999)    10327000  (E=31575)      80795800  (E=998001)
 
+
+Q3
+/*  Time is in nanoseconds
+V       |V|-1             (|V|-1)^3/2              (|V|-1)^2
+10      481900  (E=9)      357600    (E=27)         213500    (E=81)
+100     523800  (E=99)     1050300   (E=985)        3745600   (E=9801)
+1000    2539700 (E=999)    10327000  (E=31575)      80795800  (E=998001)
+*/
 public class Graph {
     private int time = 0;
     private int numOfVertices;
