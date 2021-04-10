@@ -33,7 +33,6 @@ public class Graph {
         time++;
         vertexData.get(vertex).setDiscoveryTime(time);
         visited[vertex] = true;
-        System.out.print(vertex + " ");
         Iterator<Integer> iterator = adjacencyList[vertex].listIterator();
         while (iterator.hasNext()) {
             int n = iterator.next();
@@ -42,7 +41,6 @@ public class Graph {
         }
         time++;
         vertexData.get(vertex).setFinishTime(time);
-        System.out.println(System.currentTimeMillis());
     }
 
     void DFS(int v) {
@@ -66,9 +64,11 @@ public class Graph {
             int vertex2 = g.generateRandom(0, numOfNodes - 1);
             g.addEdge(vertex1, vertex2);
         }
+        long startTime = System.nanoTime();
         for (int i = 0; i < numOfNodes; i++)
             if (!g.getVisited()[i])
                 g.DFS(i);
+        System.out.println("Running time = " + (System.nanoTime() - startTime));
     }
 
     // This will generate a random number
