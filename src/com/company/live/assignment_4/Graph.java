@@ -104,18 +104,19 @@ public class Graph {
         return false;
     }
 
-    private Graph generateGraphWithCycle(){
+    private Graph generateGraphWithCycle() {
         Graph g = new Graph(2000);
         for (int i = 0; i < 2000 - 1; i++) {
-            g.addEdge(i, i+1);
+            g.addEdge(i, i + 1);
         }
-        g.addEdge(2000-1,0);
+        g.addEdge(2000 - 1, 0);
         return g;
     }
+
     private Graph generateGraphWithoutCycle() {
         Graph g = new Graph(3000);
         for (int i = 0; i < 3000 - 1; i++) {
-                g.addEdge(i, i+1);
+            g.addEdge(i, i + 1);
         }
         return g;
     }
@@ -155,4 +156,33 @@ public class Graph {
         Random random = new Random();
         return random.nextInt(max - min + 1) + min;
     }
+
+    private class VertexData {
+        private int discoveryTime;
+        private int finishTime;
+        private int parentNode;
+
+        public VertexData() {
+            discoveryTime = -1;
+            finishTime = -1;
+            parentNode = -1;
+        }
+
+        public int getParentNode() {
+            return parentNode;
+        }
+
+        public void setParentNode(int parentNode) {
+            this.parentNode = parentNode;
+        }
+
+        public void setDiscoveryTime(int discoveryTime) {
+            this.discoveryTime = discoveryTime;
+        }
+
+        public void setFinishTime(int finishTime) {
+            this.finishTime = finishTime;
+        }
+    }
+
 }
