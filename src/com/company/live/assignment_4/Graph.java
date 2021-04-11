@@ -26,7 +26,6 @@ public class Graph {
     private int numOfVertices;
     private List<VertexData> vertexData;
     private boolean visited[];
-    private boolean hasCycle;
 
     // adjacency list is mainted as an array of linked list
     // vertices 0 to n-1  if there n vertices
@@ -43,7 +42,6 @@ public class Graph {
             vertexData.add(new VertexData());
         }
         visited = new boolean[numOfVertices];
-        hasCycle = false;
     }
 
     void addEdge(int vertex1, int vertex2) {
@@ -120,14 +118,6 @@ public class Graph {
                 g.addEdge(i, i+1);
         }
         return g;
-    }
-
-    private int numOfEdges() {
-        int count = 0;
-        for (int i = 0; i < numOfVertices; i++) {
-            count += adjacencyList[i].size();
-        }
-        return count;
     }
 
     private boolean detectBackEdge() {
