@@ -1,5 +1,3 @@
-package com.company.live.assignment_4;
-
 import java.util.*;
 
 // Q2
